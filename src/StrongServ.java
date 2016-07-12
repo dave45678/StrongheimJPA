@@ -32,12 +32,16 @@ public class StrongServ extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		System.out.println("-----------------------------------");
-	List<Report[]> rpt = DbStrongheim.StrongheimAverages();
+		List<Object[]> rpt = DbStrongheim.StrongheimAverages();
 	
-	for (Report[] r: rpt){
+	for (Object[] r: rpt){
 		System.out.print(r[0].toString());
 		System.out.print("\t");
-		System.out.println(r[1].toString());
+		System.out.print(r[1].toString());
+		System.out.print("\t");
+		System.out.print(r[2].toString());
+		System.out.print("\t");
+		System.out.println(r[3].toString());
 	}
 	System.out.println("finish");
 	}

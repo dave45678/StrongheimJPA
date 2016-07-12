@@ -90,21 +90,31 @@ public class DbStrongheim {
 		return report;
 	}
 */
-	public static List<Report[]> StrongheimAverages(){
+	/**
+	 * The result type of the SELECT clause is defined by the the result types
+	 * of the select_expressions contained in it. When multiple 
+	 * select_expressions are used in the SELECT clause, the result of the 
+	 * query is of type Object[], and the elements in this result 
+	 * correspond in order to the order of their specification in the 
+	 * SELECT clause and in type to the result types of each of 
+	 * the select_expressions.
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static List<Object[]> StrongheimAverages(){
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		String qString = "select AVG(b.assignmentgrade) as assignmentgrade,b.assignmenttype from Strongheim b group by b.assignmenttype";
+		String qString = "select MIN(b.assignmentgrade),MAX(b.assignmentgrade), AVG(b.assignmentgrade) as assignmentgrade,b.assignmenttype from Strongheim b group by b.assignmenttype";
 		
-		List<Report[]> report = null;
+		List<Object[]> report = null;
 		try{
-			TypedQuery<Report[]> query = em.createQuery(qString,Report[].class);
-			report = query.getResultList();
+			report = em.createQuery(qString).getResultList();
 
 		}catch (Exception e){
 			e.printStackTrace();
 		}
 		finally{
 				em.close();
-			}
+		}
 		return report;
 	}	
 	
