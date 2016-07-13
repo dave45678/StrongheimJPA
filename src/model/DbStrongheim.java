@@ -71,25 +71,7 @@ public class DbStrongheim {
 			}
 		return posts;
 	}
-/*	
-	public static List<Report> StrongheimAverages(){
-		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		String qString = "select AVG(b.assignmentgrade) as assignmentgrade,b.assignmenttype from Strongheim b group by b.assignmenttype";
-		
-		List<Report> report = null;
-		try{
-			TypedQuery<Report> query = em.createQuery(qString,Report.class);
-			report = query.getResultList();
 
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-		finally{
-				em.close();
-			}
-		return report;
-	}
-*/
 	/**
 	 * The result type of the SELECT clause is defined by the the result types
 	 * of the select_expressions contained in it. When multiple 
@@ -103,7 +85,9 @@ public class DbStrongheim {
 	@SuppressWarnings("unchecked")
 	public static List<Object[]> StrongheimAverages(){
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		String qString = "select MIN(b.assignmentgrade),MAX(b.assignmentgrade), AVG(b.assignmentgrade) as assignmentgrade,b.assignmenttype from Strongheim b group by b.assignmenttype";
+		String qString = "select MIN(b.assignmentgrade),MAX(b.assignmentgrade), " + 
+				"AVG(b.assignmentgrade) as assignmentgrade,b.assignmenttype " + 
+				"from Strongheim b group by b.assignmenttype";
 		
 		List<Object[]> report = null;
 		try{

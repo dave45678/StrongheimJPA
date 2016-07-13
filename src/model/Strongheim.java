@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import org.eclipse.persistence.annotations.ReturnInsert;
 import java.math.BigDecimal;
 
 
@@ -14,17 +15,26 @@ import java.math.BigDecimal;
 public class Strongheim implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@Column(name="id")
+	@ReturnInsert
+	private long id;
+
 	private BigDecimal assignmentgrade;
 
 	private String assignmenttype;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private BigDecimal id;
-
 	private String student;
 
 	public Strongheim() {
+	}
+
+	public long getId() {
+		return this.id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public BigDecimal getAssignmentgrade() {
@@ -41,14 +51,6 @@ public class Strongheim implements Serializable {
 
 	public void setAssignmenttype(String assignmenttype) {
 		this.assignmenttype = assignmenttype;
-	}
-
-	public BigDecimal getId() {
-		return this.id;
-	}
-
-	public void setId(BigDecimal id) {
-		this.id = id;
 	}
 
 	public String getStudent() {

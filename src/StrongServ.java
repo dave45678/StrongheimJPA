@@ -31,8 +31,8 @@ public class StrongServ extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("-----------------------------------");
-		List<Object[]> rpt = DbStrongheim.StrongheimAverages();
+	System.out.println("-----------------------------------");
+	List<Object[]> rpt = DbStrongheim.StrongheimAverages();
 	
 	for (Object[] r: rpt){
 		System.out.print(r[0].toString());
